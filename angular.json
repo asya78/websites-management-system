@@ -5,7 +5,7 @@
   "projects": {
     "websites-management-system": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": { "@schematics/angular:component": {"skipTests": true}},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -63,7 +64,8 @@
               "browserTarget": "websites-management-system:build:production"
             },
             "development": {
-              "browserTarget": "websites-management-system:build:development"
+              "browserTarget": "websites-management-system:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
@@ -94,5 +96,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
