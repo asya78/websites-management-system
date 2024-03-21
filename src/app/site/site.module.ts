@@ -4,6 +4,7 @@ import { SitesListComponent } from './sites-list/sites-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddSiteComponent } from './add-site/add-site.component';
 import { SiteRoutingModule } from './site-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SiteRoutingModule } from './site-routing.module';
     AddSiteComponent
   ],
   imports: [
-    CommonModule, SiteRoutingModule, HttpClientModule
-  ]
+    CommonModule, SiteRoutingModule, HttpClientModule, FormsModule
+  ],
+  exports: [SitesListComponent]
 })
 export class SiteModule { }

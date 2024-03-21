@@ -1,5 +1,8 @@
 export interface Task {
-    "taskId": number,
+    "taskImg": string,
+    "taskSite": string,
     "taskName": string,
-    "taskLink": string
+    "taskLink": string, 
+    "taskDate": string,
+    "taskDevelopers": string
 }

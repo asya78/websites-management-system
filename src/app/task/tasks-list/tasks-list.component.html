@@ -1,0 +1,34 @@
+<main class="container">
+    <div class="row g-5">
+        <div class="col-md-8">
+            <div *ngFor="let task of tasks" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ task.taskSite}}</strong>
+                    <h3 class="mb-0">{{ task.taskName}}</h3>
+                    <div class="mb-1 text-body-secondary">{{ task.taskDate}}</div>
+                    <p class="card-text mb-auto">Developers: {{ task.taskDevelopers }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="position-sticky" style="top: 2rem;">
+                <div>
+                    <h4 class="fst-italic">Recent tasks</h4>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let task of tasks" >
+                            <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-top py-3 link-body-emphasis text-decoration-none border-top" href="{{ task.taskLink}}">
+                                <img src="{{ task.taskImg }}" alt="{{ task.taskName}}">
+                                <div class="col-lg-8">
+                                    <h6 class="mb-0">{{ task.taskSite }}</h6>
+                                    <p>{{ task.taskName }}</p>
+                                    <small class="text-body-secondary">{{ task.taskDate }}</small>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

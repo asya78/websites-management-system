@@ -2,18 +2,16 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-site',
-  templateUrl: './add-site.component.html',
-  styleUrls: ['./add-site.component.css']
+  selector: 'app-add-task',
+  templateUrl: './add-task.component.html',
+  styleUrls: ['./add-task.component.css']
 })
-export class AddSiteComponent {
+export class AddTaskComponent {
 
-  addSite(form: NgForm) {
+  addTask(form: NgForm) {
     if (form.invalid) {
       return;
     }
     console.log(form.value);   
-
   }
-
 }

@@ -2,90 +2,90 @@
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-lg-8 mx-auto">
-                <h1 class="h3 mb-3 font-weight-normal">Add site</h1>
-                <form #form="ngForm" (ngSubmit)="addSite(form)" class="" >
+                <h1 class="h3 mb-3 font-weight-normal">Add task</h1>
+                <form #form="ngForm" (ngSubmit)="addTask(form)" class="" >
                     <div class="row">
                         <div class="col-sm-6">
-                            <label for="siteName" class="sr-only">Website Name</label>
+                            <label for="taskSite" class="sr-only">Task Site</label>
                             <input 
-                            name="siteName" 
+                            name="taskSite" 
                             type="text" 
-                            id="siteName"                      
+                            id="taskSite"                      
                             class="form-control" 
                             placeholder="" 
                             required 
                             autofocus=""
                             ngModel
-                            #inputsiteName="ngModel" >
+                            #inputtaskSite="ngModel" >
                         </div>
                         <div class="col-sm-6">
-                            <label for="siteImg" class="sr-only">Website IMG Url</label>
+                            <label for="taskDate" class="sr-only">Task Date</label>
                             <input 
-                            name="siteImg" 
+                            name="taskDate" 
                             type="text" 
-                            id="siteImg"                      
+                            id="taskDate"                      
                             class="form-control" 
                             placeholder="" 
                             required 
                             autofocus=""
                             ngModel
-                            #inputsiteImg="ngModel" >
+                            #inputtaskDate="ngModel" >
                         </div>
                         <div class="col-sm-6">
-                            <label for="siteProdLink" class="sr-only">Production Link</label>
+                            <label for="siteName" class="sr-only">Task Name</label>
                             <input 
-                            name="siteProdLink" 
+                            name="taskName" 
                             type="text" 
-                            id="siteProdLink"                      
+                            id="taskName"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus=""
+                            ngModel
+                            #inputtaskName="ngModel" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="taskImg" class="sr-only">Task IMG Url</label>
+                            <input 
+                            name="taskImg" 
+                            type="text" 
+                            id="taskImg"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus=""
+                            ngModel
+                            #inputtaskImg="ngModel" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="taskLink" class="sr-only">Task Link</label>
+                            <input 
+                            name="taskLink" 
+                            type="text" 
+                            id="taskLink"                      
                             class="form-control" 
                             placeholder="" 
                             required 
                             autofocus="" 
                             ngModel
-                            #inputsiteProdLink="ngModel">
+                            #inputtaskLink="ngModel">
                         </div>
                         <div class="col-sm-6">
-                            <label for="siteDevLink" class="sr-only">Development Link</label>
+                            <label for="taskDevelopers" class="sr-only">Developers</label>
                             <input 
-                            name="siteDevLink" 
+                            name="taskDevelopers" 
                             type="text" 
-                            id="siteDevLink"                      
+                            id="taskDevelopers"                      
                             class="form-control" 
                             placeholder="" 
                             required 
                             autofocus="" 
                             ngModel
-                            #inputsiteDevLink="ngModel">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="siteDevelopers" class="sr-only">Developers</label>
-                            <input 
-                            name="siteDevelopers" 
-                            type="text" 
-                            id="siteDevelopers"                      
-                            class="form-control" 
-                            placeholder="" 
-                            required 
-                            autofocus="" 
-                            ngModel
-                            #inputsiteDevelopers="ngModel">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="siteTasks" class="sr-only">Tasks</label>
-                            <input 
-                            name="siteTasks" 
-                            type="text" 
-                            id="siteTasks"                      
-                            class="form-control" 
-                            placeholder="" 
-                            required 
-                            autofocus="" 
-                            ngModel
-                            #inputsiteTasks="ngModel">
-                        </div>
+                            #inputtaskDevelopers="ngModel">
+                        </div>                        
                     </div>
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Add Site</button>
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Add Task</button>
                 </form>
             </div>
         </div>

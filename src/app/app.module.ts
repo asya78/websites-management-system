@@ -14,9 +14,12 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
+import { HomeComponent } from './home/home.component';
+import { TaskModule } from './task/task.module';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     UserModule,
     SiteModule,
+    TaskModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

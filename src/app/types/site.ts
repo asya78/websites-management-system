@@ -8,5 +8,7 @@ export interface Site {
     "siteGit": string,
     "siteFtp": string,
     "siteDir": string
-    "siteTasks": string
+    "siteTasks": string,
+    "siteDefinition": string,
+    "siteFav": string
 }
