@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { matchPasswordsValidator } from 'src/app/shared/utils/march-passwords-validator';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -8,6 +9,7 @@ import { matchPasswordsValidator } from 'src/app/shared/utils/march-passwords-va
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
   form = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(5)]],
     email: ['', [Validators.required, Validators.pattern("^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$")]],
@@ -17,19 +19,23 @@ export class RegisterComponent {
         rePassword: ['', [Validators.required]]
       },
       {
-        validators: [matchPasswordsValidator('password','rePassword')]
+        validators: [matchPasswordsValidator('password', 'rePassword')]
       }
     )
-   });
+  });
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) {  }
 
   register(): void {
     if (this.form.invalid) {
       return;
     }
 
-    console.log(this.form.value);
+    const {
+      email,
+      passGroup: { password, rePassword } = {},
+    } = this.form.value;
 
+    this.userService.register( email!,password!);
   }
 }

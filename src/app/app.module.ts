@@ -16,6 +16,8 @@ import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { TaskModule } from './task/task.module';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { appInterceptorProvider } from './app.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,9 +33,10 @@ import { TaskModule } from './task/task.module';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [appInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

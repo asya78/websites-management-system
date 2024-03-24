@@ -4,3 +4,10 @@ export interface User {
     "userEmail": string,
     "userSkype": string
 }
+
+export interface UserForAuth {
+    username: string;
+    email: string;
+    password: string;
+    repassword: string;
+  }

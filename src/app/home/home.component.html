@@ -8,12 +8,12 @@
             <div class="card-body">
               <h2>{{ site.siteName}}</h2>
               <ul>
-                <li>Production: <a href="{{ site.siteProdLink}}" target="_blank">{{ site.siteProdLink}}</a>
+                <li>Production: <a href="{{ site.siteProdLink}}" target="_blank">{{ site.siteProdLink }}</a>
                 </li>
                 <li>Developers: {{ site.siteDevelopers}}</li>
                 <li>Tasks: {{ site.siteTasks }}</li>
               </ul>
-              <div class="d-flex justify-content-between align-items-center">
+              <div  *ngIf="isLoggedIn" class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
