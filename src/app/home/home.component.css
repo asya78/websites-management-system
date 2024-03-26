@@ -2,3 +2,6 @@
     max-width: 50px;
     min-height: 50px;
 }
+.list-group-flush>.list-group-item span {
+    font-weight: bold;
+}

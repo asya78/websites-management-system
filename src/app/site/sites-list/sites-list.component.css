@@ -3,3 +3,6 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px
 }
+.list-group-flush>.list-group-item span {
+    font-weight: bold;
+}

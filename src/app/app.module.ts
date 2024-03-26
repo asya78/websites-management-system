@@ -18,6 +18,8 @@ import { HomeComponent } from './home/home.component';
 import { TaskModule } from './task/task.module';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { appInterceptorProvider } from './app.interceptor';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { UserService } from './user/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,7 @@ import { appInterceptorProvider } from './app.interceptor';
     AngularFireAuthModule,
     AppRoutingModule
   ],
-  providers: [appInterceptorProvider],
+  providers: [appInterceptorProvider, AuthGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -25,7 +25,7 @@
     </div>
 
     <div *ngIf="isLoggedIn" class="col-md-3 text-end">
-      <a routerLink="/profile" type="button" class="btn btn-outline-primary me-2">Profile</a>
+      <a routerLink="/profile" type="button" class="btn btn-outline-primary me-2" >{{ username }}'s Profile</a>
       <a (click)="logout()" type="button" class="btn btn-primary">Logout</a>
     </div>
   </header>

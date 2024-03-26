@@ -32,10 +32,11 @@ export class RegisterComponent {
     }
 
     const {
+      username,
       email,
       passGroup: { password, rePassword } = {},
     } = this.form.value;
 
-    this.userService.register( email!,password!);
+    this.userService.register(email!, password!, username!);
   }
 }
