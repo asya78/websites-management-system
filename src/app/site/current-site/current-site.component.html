@@ -1,0 +1,94 @@
+<main class="form-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 col-lg-8 mx-auto">
+                <h1 class="h3 mb-3 font-weight-normal">Edit site</h1>
+                <form #form="ngForm" (ngSubmit)="updateSite(form)" class="" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="siteName" class="sr-only">Website Name</label>
+                            <input 
+                            name="siteName" 
+                            type="text" 
+                            id="siteName"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus=""
+                            [(ngModel)]="site.siteName" 
+                            #inputsiteName="ngModel" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="siteImg" class="sr-only">Website IMG Url</label>
+                            <input 
+                            name="siteImg" 
+                            type="text" 
+                            id="siteImg"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus=""
+                            [(ngModel)]="site.siteImg" 
+                            #inputsiteImg="ngModel" >
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="siteProdLink" class="sr-only">Production Link</label>
+                            <input 
+                            name="siteProdLink" 
+                            type="text" 
+                            id="siteProdLink"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus="" 
+                            [(ngModel)]="site.siteProdLink" 
+                            #inputsiteProdLink="ngModel">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="siteDevLink" class="sr-only">Development Link</label>
+                            <input 
+                            name="siteDevLink" 
+                            type="text" 
+                            id="siteDevLink"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus="" 
+                            [(ngModel)]="site.siteDevLink" 
+                            #inputsiteDevLink="ngModel">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="siteDevelopers" class="sr-only">Developers</label>
+                            <input 
+                            name="siteDevelopers" 
+                            type="text" 
+                            id="siteDevelopers"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus="" 
+                            [(ngModel)]="site.siteDevelopers" 
+                            #inputsiteDevelopers="ngModel">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="siteTasks" class="sr-only">Tasks</label>
+                            <input 
+                            name="siteTasks" 
+                            type="text" 
+                            id="siteTasks"                      
+                            class="form-control" 
+                            placeholder="" 
+                            required 
+                            autofocus="" 
+                            [(ngModel)]="site.siteTasks" 
+                            #inputsiteTasks="ngModel">
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Edit Site</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</main>

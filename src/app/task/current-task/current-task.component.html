@@ -1,9 +1,9 @@
-<main class="form-wrapper">
+<main class="frm-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-lg-8 mx-auto">
-                <h1 class="h3 mb-3 font-weight-normal">Add task</h1>
-                <form #form="ngForm" (ngSubmit)="addTask(form)" class="" >
+                <h1 class="h3 mb-3 font-weight-normal">Edit task</h1>
+                <form #form="ngForm" (ngSubmit)="updateTask(form)" class="" >
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="taskSite" class="sr-only">Task Site</label>
@@ -15,7 +15,7 @@
                             placeholder="" 
                             required 
                             autofocus=""
-                            ngModel
+                            [(ngModel)]="task.taskSite" 
                             #inputtaskSite="ngModel" >
                             <ng-container *ngIf="inputtaskSite.touched">
                                 <p class="error" *ngIf="inputtaskSite.errors?.['required']">Task is required!</p>
@@ -31,7 +31,7 @@
                             placeholder="" 
                             required 
                             autofocus=""
-                            ngModel
+                          [(ngModel)]="task.taskDate" 
                             #inputtaskDate="ngModel" >
                         </div>
                         <div class="col-sm-6">
@@ -44,7 +44,7 @@
                             placeholder="" 
                             required 
                             autofocus=""
-                            ngModel
+                            [(ngModel)]="task.taskName" 
                             #inputtaskName="ngModel" >
                         </div>
                         <div class="col-sm-6">
@@ -57,7 +57,7 @@
                             placeholder="" 
                             required 
                             autofocus=""
-                            ngModel
+                            [(ngModel)]="task.taskImg" 
                             #inputtaskImg="ngModel" >
                         </div>
                         <div class="col-sm-6">
@@ -70,7 +70,7 @@
                             placeholder="" 
                             required 
                             autofocus="" 
-                            ngModel
+                            [(ngModel)]="task.taskLink" 
                             #inputtaskLink="ngModel">
                         </div>
                         <div class="col-sm-6">
@@ -83,12 +83,12 @@
                             placeholder="" 
                             required 
                             autofocus="" 
-                            ngModel
+                            [(ngModel)]="task.taskDevelopers" 
                             #inputtaskDevelopers="ngModel">
                         </div>
                     </div>
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Add Task</button>
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Edit Task</button>
                 </form>
             </div>
         </div>

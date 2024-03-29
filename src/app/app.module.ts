@@ -20,6 +20,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { appInterceptorProvider } from './app.interceptor';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UserService } from './user/user.service';
+import { FormsModule } from '@angular/forms';
+import { TaskService } from './task/task.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { UserService } from './user/user.service';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     CoreModule,
     SharedModule,
     UserModule,
@@ -38,7 +41,7 @@ import { UserService } from './user/user.service';
     AngularFireAuthModule,
     AppRoutingModule
   ],
-  providers: [appInterceptorProvider, AuthGuard, UserService],
+  providers: [appInterceptorProvider, AuthGuard, UserService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

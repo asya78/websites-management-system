@@ -3,6 +3,8 @@ import { Site } from '../types/site';
 import { ApiService } from '../api.service';
 import { Task } from '../types/task';
 import { UserService } from '../user/user.service';
+import { TaskService } from '../task/task.service';
+import { SiteService } from '../site/site.service';
 
 @Component({
   selector: 'app-home',
@@ -14,14 +16,19 @@ export class HomeComponent implements OnInit{
   sites: Site[] | null = null;
   tasks: Task[] | null = null;
 
-  constructor(private api: ApiService, private userService: UserService) {} 
+  constructor(
+    private api: ApiService, 
+    private userService: UserService,
+    private taskService: TaskService,
+    private siteService: SiteService
+    ) {} 
 
   ngOnInit(): void {
-    this.api.getSites().subscribe((sites) => {
+    this.siteService.getSites().subscribe((sites) => {
       this.sites = sites;      
     })
 
-    this.api.getTasks().subscribe((tasks) => {
+    this.taskService.getTasks().subscribe((tasks) => {
       this.tasks = tasks;      
     })
 
