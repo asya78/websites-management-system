@@ -11,7 +11,7 @@ import { UserService } from 'src/app/user/user.service';
 })
 
 export class TasksListComponent implements OnInit {
-  tasks: any;
+  tasks: Task[] | undefined;
 
   constructor(
     private taskService: TaskService,
@@ -19,18 +19,37 @@ export class TasksListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.taskService.getTasks().subscribe((tasks) => {
-      this.tasks = tasks;
-    })
+    // this.taskService.getTasks().subscribe((tasks) => {
+    //   this.tasks = tasks;
+    // });
+    this.taskService.getTasks().subscribe(tasks => {
+      this.tasks = tasks.map((task, index) => {
+          return { ...task, key: index.toString() }; 
+      });
+  });
   }
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
   }
 
-  getKeyOfCurrentTask(index: number): string {
-    return this.tasks[index].key;
-  }
+  // getKeyOfCurrentTask(index: number): string {
+  //   return this.tasks[index].key;
+  // }
+
+  deleteTask(key: string) {
+    this.taskService.deleteTask(key)
+        .then(() => {
+            console.log("Task successfully deleted!");
+            // Презареждане на списъка с задачи след изтриване
+            this.taskService.getTasks().subscribe(tasks => {
+                this.tasks = tasks;
+            });
+        })
+        .catch(error => {
+            console.error("Error deleting task:", error);
+        });
+}
 
 }
 

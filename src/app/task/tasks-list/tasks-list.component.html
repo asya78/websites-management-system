@@ -1,16 +1,17 @@
 <main class="container">
     <div class="row g-5">
         <div class="col-md-8">
-            <div *ngFor="let task of tasks; let i = index" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div *ngFor="let task of tasks" class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ task.taskSite}}</strong>
-                    <h3 class="mb-0">{{ task.taskName}}</h3>
-                    <div class="mb-1 text-body-secondary">{{ task.taskDate}}</div>
+                    <strong class="d-inline-block mb-2 text-primary-emphasis">{{ task.taskSite }}</strong>
+                    <h3 class="mb-0">{{ task.taskName }}</h3>
+                    <div class="mb-1 text-body-secondary">{{ task.taskDate }}</div>
                     <p class="card-text mb-auto">Developers: {{ task.taskDevelopers }}</p>
-                    <div  *ngIf="isLoggedIn" class="d-flex justify-content-between align-items-center">
+                    <div *ngIf="isLoggedIn" class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button> -->
-                            <a [routerLink]="['/task', i]" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <a [routerLink]="['/task',task.id]" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
+                            <a (click)="deleteTask(task.id)" type="button" class="btn btn-sm btn-outline-secondary">Delete</a>
                         </div>
                     </div>
                 </div>

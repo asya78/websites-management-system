@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Task } from 'src/app/types/task';
 import { TaskService } from '../task.service';
 import { Router } from '@angular/router';
@@ -10,31 +9,41 @@ import { Router } from '@angular/router';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent {
+export class AddTaskComponent implements OnInit {
+  tasks: Task[] | undefined;
 
   constructor(
-    private db: AngularFireDatabase, 
     private taskService: TaskService,
     public router: Router
-    ) { }
+  ) { }
+
+  ngOnInit(): void {
+    this.taskService.getTasks().subscribe((tasks) => {
+      this.tasks = tasks;
+    });
+  }
 
   addTask(form: NgForm) {
     if (form.invalid) {
-      console.log('Error');
-      
-      return;
+        console.log('Error');
+        return;
     }
 
     const task: Task = {
-      taskDate: form.value.taskDate,
-      taskDevelopers: form.value.taskDevelopers,
-      taskImg: form.value.taskImg,
-      taskLink: form.value.taskLink,
-      taskName: form.value.taskName,
-      taskSite: form.value.taskSite
+        id: '',
+        taskDate: form.value.taskDate,
+        taskDevelopers: form.value.taskDevelopers,
+        taskImg: form.value.taskImg,
+        taskLink: form.value.taskLink,
+        taskName: form.value.taskName,
+        taskSite: form.value.taskSite,
     };
-   
-    this.taskService.addTask(task);
-    this.router.navigate(['tasks']);
+
+    this.taskService.addTask(task).then(() => {
+        console.log('Task added successfully!');
+        this.router.navigate(['tasks']);
+    }).catch((error: any) => {
+        console.error('Error adding task:', error);
+    });
   }
 }

@@ -10,32 +10,33 @@ import { Task } from 'src/app/types/task';
   styleUrls: ['./current-task.component.css']
 })
 export class CurrentTaskComponent implements OnInit {
-  taskId: string | null = null;
-  task: any | null = null;
+  taskId: any;
+  task: any;
 
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
     public router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.taskId = this.route.snapshot.paramMap.get('id');
-    this.getTaskData(this.taskId);
+    this.route.paramMap.subscribe(params => {
+      this.taskId = params.get('id');
+      this.getTaskData(this.taskId);
+    });
   }
 
   getTaskData(taskId: string | null): void {
     if (taskId) {
-      this.taskService.getTaskByIndex(taskId).subscribe(task => {
+      this.taskService.getTaskByKey(taskId).subscribe(task => {
         if (task) {
           this.task = task;
         } else {
-          console.error(`Task with index ${taskId} not found.`);
+          console.error(`Task with key ${taskId} not found.`);
         }
       }, error => {
         console.error('Error getting task:', error);
       });
-      
     } else {
       console.error('Task ID not provided.');
     }
@@ -45,17 +46,23 @@ export class CurrentTaskComponent implements OnInit {
     if (form.invalid) {
       console.log('Error');
       return;
-    }    
-    const task: Task = {
+    }
+
+    const updatedTask: Task = {
+      id: '',
       taskDate: form.value.taskDate,
       taskDevelopers: form.value.taskDevelopers,
       taskImg: form.value.taskImg,
       taskLink: form.value.taskLink,
       taskName: form.value.taskName,
-      taskSite: form.value.taskSite
-    };   
-    
-    this.taskService.updateTask(this.taskId, task);
-    this.router.navigate(['tasks']);
+      taskSite: form.value.taskSite,
+    };
+
+    this.taskService.updateTask(this.taskId, updatedTask).then(() => {
+      console.log('Task updated successfully!');
+      this.router.navigate(['tasks']);
+    }).catch((error: any) => {
+      console.error('Error updating task:', error);
+    });
   }
 }
