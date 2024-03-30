@@ -24,32 +24,28 @@ export class TasksListComponent implements OnInit {
     // });
     this.taskService.getTasks().subscribe(tasks => {
       this.tasks = tasks.map((task, index) => {
-          return { ...task, key: index.toString() }; 
+        return { ...task, key: index.toString() };
       });
-  });
+    });
   }
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
   }
 
-  // getKeyOfCurrentTask(index: number): string {
-  //   return this.tasks[index].key;
-  // }
-
   deleteTask(key: string) {
     this.taskService.deleteTask(key)
-        .then(() => {
-            console.log("Task successfully deleted!");
-            // Презареждане на списъка с задачи след изтриване
-            this.taskService.getTasks().subscribe(tasks => {
-                this.tasks = tasks;
-            });
-        })
-        .catch(error => {
-            console.error("Error deleting task:", error);
+      .then(() => {
+        console.log("Task successfully deleted!");
+        // Презареждане на списъка с задачи след изтриване
+        this.taskService.getTasks().subscribe(tasks => {
+          this.tasks = tasks;
         });
-}
+      })
+      .catch(error => {
+        console.error("Error deleting task:", error);
+      });
+  }
 
 }
 

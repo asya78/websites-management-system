@@ -22,9 +22,8 @@ export class TaskService {
   addTask(task: Task): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.TaskDetailsRef.push(task).then(ref => {
-        const taskId = ref.key; // Вземете уникалния ключ
+        const taskId = ref.key; 
         if (taskId) {
-          // Актуализирайте таската с уникалния ключ като id
           this.TaskDetailsRef.update(taskId, { id: taskId }).then(() => {
             resolve();
           }).catch(error => {
@@ -39,11 +38,6 @@ export class TaskService {
     });
   }
   
-
-  getTaskByKey(key: string): Observable<Task | null> {
-    return this.db.object<Task>(`${this.TaskDbPath}/${key}`).valueChanges();
-  }
-
   updateTask(key: string, updatedTask: Task): Promise<void> {
     return this.TaskDetailsRef.update(key, updatedTask).then(() => {
       console.log('Task updated successfully!');
@@ -57,8 +51,7 @@ export class TaskService {
     return new Promise<void>((resolve, reject) => {
       this.TaskDetailsRef.snapshotChanges().pipe(
         take(1)
-      ).subscribe(tasks => {
-        
+      ).subscribe(tasks => {        
         const taskToDelete = tasks.find(task => {
           if (task && task.payload.val() && task.payload.val()?.id === id) {
             return true;
@@ -67,7 +60,7 @@ export class TaskService {
         });
         if (taskToDelete) {
           const taskKey = taskToDelete.key;
-          if (taskKey) { // Проверка дали taskKey не е null
+          if (taskKey) { 
             this.TaskDetailsRef.remove(taskKey)
               .then(() => {
                 console.log('Task deleted successfully!');
@@ -88,8 +81,11 @@ export class TaskService {
       });
     });
   }
-  
-  
+
+  getTaskByKey(key: string): Observable<Task | null> {
+    return this.db.object<Task>(`${this.TaskDbPath}/${key}`).valueChanges();
+  }
+    
   getTasks(): Observable<Task[]> {
     return this.TaskDetailsRef.snapshotChanges().pipe(
       map(changes =>
@@ -98,14 +94,4 @@ export class TaskService {
     );
   }
 
-  getTaskByIndex(index: number): Observable<Task | null> {
-    return this.TaskDetailsRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as Task }))
-      ),
-      map(tasks =>
-        tasks[index]
-      )
-    );
-  }
 }

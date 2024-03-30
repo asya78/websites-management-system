@@ -1,53 +1,97 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { Observable } from 'rxjs';
 import { Site } from '../types/site';
-import { Router } from '@angular/router';
-import { Observable, map, take } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SiteService {
-
+  sites: any;
 
   private SiteDbPath = 'site';
   SiteDetailsRef: AngularFireList<Site>;
 
   constructor(
     private db: AngularFireDatabase,
-    public router: Router
   ) {
     this.SiteDetailsRef = db.list(this.SiteDbPath);
   }
 
-  addSite(newSite: Site) {
-    const sitesRef = this.db.list(this.SiteDbPath);
-    sitesRef.valueChanges().pipe(take(1)).subscribe((data: any[]) => {
-      const nextKey = (data.length + 1).toString();
-      sitesRef.set(nextKey, newSite);
+  addSite(newSite: Site): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.SiteDetailsRef.push(newSite).then(ref => {
+        const siteId = ref.key; 
+        if (siteId) {
+          this.SiteDetailsRef.update(siteId, { id: siteId }).then(() => {
+            resolve();
+          }).catch(error => {
+            reject(error);
+          });
+        } else {
+          reject("Failed to retrieve key for the new site.");
+        }
+      }).catch(error => {
+        reject(error);
+      });
     });
   }
 
-  updateSite(siteId: any, updatedSite: any) {
-    const sitesRef = this.db.list(this.SiteDbPath);
-    sitesRef.set(siteId, updatedSite);
+  updateSite(key: string, updatedSite: Site): Promise<void> {
+    return this.SiteDetailsRef.update(key, updatedSite).then(() => {
+      console.log('Site updated successfully!');
+    }).catch(error => {
+      console.error('Error updating site: ', error);
+      throw error;
+    });
   }
 
-  getSites(): Observable<any[]> {
-    return this.db.list(this.SiteDbPath).valueChanges();
+  deleteSite(id: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.SiteDetailsRef.snapshotChanges().pipe(
+        take(1)
+      ).subscribe(sites => {        
+        const siteToDelete = sites.find(site => {
+          if (site && site.payload.val() && site.payload.val()?.id === id) {
+            return true;
+          }
+          return false;
+        });
+        if (siteToDelete) {
+          const siteKey = siteToDelete.key;
+          if (siteKey) { 
+            this.SiteDetailsRef.remove(siteKey)
+              .then(() => {
+                console.log('Site deleted successfully!');
+                resolve();
+              })
+              .catch(error => {
+                console.error('Error deleting site: ', error);
+                reject(error);
+              });
+          } else {
+            console.error('Site key is null.');
+            reject('Site key is null.');
+          }
+        } else {
+          console.error('Site not found with id: ', id);
+          reject('Site not found');
+        }
+      });
+    });
   }
 
-  getSiteByIndex(index: string): Observable<any> {
-    const numericIndex = parseInt(index, 10);
+  getSiteByKey(key: string): Observable<Site | null> {
+    return this.db.object<Site>(`${this.SiteDbPath}/${key}`).valueChanges();
+  }
 
+  getSites(): Observable<Site[]> {
     return this.SiteDetailsRef.snapshotChanges().pipe(
       map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as any }))
-      ),
-      map(sites =>
-        sites[numericIndex]
+        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as Site }))
       )
     );
-
   }
+
 }

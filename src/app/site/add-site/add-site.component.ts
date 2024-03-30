@@ -13,16 +13,17 @@ import { Site } from 'src/app/types/site';
 export class AddSiteComponent {
 
   constructor(
-    private db: AngularFireDatabase, 
+    private db: AngularFireDatabase,
     private siteService: SiteService,
     public router: Router
-    ) { }
+  ) { }
 
   addSite(form: NgForm) {
     if (form.invalid) {
       return;
     }
     const site: Site = {
+      id: '',
       siteName: form.value.siteName,
       siteImg: form.value.siteImg,
       siteProdLink: form.value.siteProdLink,
@@ -30,10 +31,13 @@ export class AddSiteComponent {
       siteDevelopers: form.value.siteDevelopers,
       siteTasks: form.value.siteTasks
     };
-   
-    this.siteService.addSite(site);
-    this.router.navigate(['sites']);
 
+    this.siteService.addSite(site).then(() => {
+      console.log('Site added successfully!');
+      this.router.navigate(['sites']);
+    }).catch((error: any) => {
+      console.error('Error adding site:', error);
+    });
   }
 
 }

@@ -1,4 +1,5 @@
 export interface Site {
+    "id": string,
     "siteName": string,
     "siteImg": string,
     "siteProdLink": string,

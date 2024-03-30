@@ -18,13 +18,28 @@ export class SitesListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.siteService.getSites().subscribe((sites) => {
-      this.sites = sites;
-    })
+    this.siteService.getSites().subscribe(sites => {
+      this.sites = sites.map((site, index) => {
+          return { ...site, key: index.toString() }; 
+      });
+  });
   }
 
   get isLoggedIn(): boolean {
     return this.userService.isLoggedIn;
+  }
+
+  deleteSite(key: string) {
+    this.siteService.deleteSite(key)
+      .then(() => {
+        console.log("Task successfully deleted!");
+        this.siteService.getSites().subscribe(sites => {
+          this.sites = sites;
+        });
+      })
+      .catch(error => {
+        console.error("Error deleting site:", error);
+      });
   }
 
 }

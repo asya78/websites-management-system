@@ -49,7 +49,7 @@ export class CurrentTaskComponent implements OnInit {
     }
 
     const updatedTask: Task = {
-      id: '',
+      id: this.taskId,
       taskDate: form.value.taskDate,
       taskDevelopers: form.value.taskDevelopers,
       taskImg: form.value.taskImg,
