@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-7 col-lg-8 mx-auto">
                 <h1 class="h3 mb-3 font-weight-normal">Edit task</h1>
-                <form #form="ngForm" (ngSubmit)="updateTask(form)" class="" >
+                <form *ngIf="task" #form="ngForm" (ngSubmit)="updateTask(form)" class="" >
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="taskSite" class="sr-only">Task Site</label>
@@ -21,19 +21,7 @@
                                 <p class="error" *ngIf="inputtaskSite.errors?.['required']">Task is required!</p>
                             </ng-container>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="taskDate" class="sr-only">Task Date</label>
-                            <input 
-                            name="taskDate" 
-                            type="text" 
-                            id="taskDate"                      
-                            class="form-control" 
-                            placeholder="" 
-                            required 
-                            autofocus=""
-                          [(ngModel)]="task.taskDate" 
-                            #inputtaskDate="ngModel" >
-                        </div>
+                        
                         <div class="col-sm-6">
                             <label for="siteName" class="sr-only">Task Name</label>
                             <input 

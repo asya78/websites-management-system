@@ -4,6 +4,6 @@ export interface Task {
     "taskSite": string,
     "taskName": string,
     "taskLink": string, 
-    "taskDate": string,
+    "taskDate": number,
     "taskDevelopers": string,
 }

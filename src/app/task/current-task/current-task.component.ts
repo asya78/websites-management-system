@@ -10,8 +10,8 @@ import { Task } from 'src/app/types/task';
   styleUrls: ['./current-task.component.css']
 })
 export class CurrentTaskComponent implements OnInit {
-  taskId: any;
-  task: any;
+  taskId: string | null = null;
+  task: Task | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -48,21 +48,27 @@ export class CurrentTaskComponent implements OnInit {
       return;
     }
 
-    const updatedTask: Task = {
-      id: this.taskId,
-      taskDate: form.value.taskDate,
-      taskDevelopers: form.value.taskDevelopers,
-      taskImg: form.value.taskImg,
-      taskLink: form.value.taskLink,
-      taskName: form.value.taskName,
-      taskSite: form.value.taskSite,
-    };
+    if (this.task && this.taskId) {
+      const currentDate = Date.now();
 
-    this.taskService.updateTask(this.taskId, updatedTask).then(() => {
-      console.log('Task updated successfully!');
-      this.router.navigate(['tasks']);
-    }).catch((error: any) => {
-      console.error('Error updating task:', error);
-    });
+      const updatedTask: Task = {
+        id: this.taskId,
+        taskDate: currentDate,
+        taskDevelopers: form.value.taskDevelopers,
+        taskImg: form.value.taskImg,
+        taskLink: form.value.taskLink,
+        taskName: form.value.taskName,
+        taskSite: form.value.taskSite,
+      };
+
+      this.taskService.updateTask(this.taskId, updatedTask).then(() => {
+        console.log('Task updated successfully!');
+        this.router.navigate(['tasks']);
+      }).catch((error: any) => {
+        console.error('Error updating task:', error);
+      });
+    }
+
+
   }
 }

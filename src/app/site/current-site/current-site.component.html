@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-7 col-lg-8 mx-auto">
                 <h1 class="h3 mb-3 font-weight-normal">Edit site</h1>
-                <form #form="ngForm" (ngSubmit)="updateSite(form)" class="" >
+                <form *ngIf="site" #form="ngForm" (ngSubmit)="updateSite(form)" class="" >
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="siteName" class="sr-only">Website Name</label>

@@ -8,7 +8,7 @@ import { map, take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SiteService {
-  sites: any;
+  sites: Site[] | null = null;
 
   private SiteDbPath = 'site';
   SiteDetailsRef: AngularFireList<Site>;

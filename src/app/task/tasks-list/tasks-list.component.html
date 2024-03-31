@@ -5,7 +5,7 @@
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-primary-emphasis">{{ task.taskSite }}</strong>
                     <h3 class="mb-0">{{ task.taskName }}</h3>
-                    <div class="mb-1 text-body-secondary">{{ task.taskDate }}</div>
+                    <div class="mb-1 text-body-secondary">{{ task.taskDate | date: 'dd/MM/yyyy' }}</div>
                     <p class="card-text mb-auto">Developers: {{ task.taskDevelopers }}</p>
                     <div *ngIf="isLoggedIn" class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
@@ -29,7 +29,7 @@
                                 <div class="col-lg-8">
                                     <h6 class="mb-0">{{ task.taskSite }}</h6>
                                     <p>{{ task.taskName }}</p>
-                                    <small class="text-body-secondary">{{ task.taskDate }}</small>
+                                    <small class="text-body-secondary">{{ task.taskDate | date: 'dd/MM/yyyy' }}</small>
                                 </div>
                             </a>
                         </li>

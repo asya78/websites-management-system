@@ -8,7 +8,7 @@ import { map, take } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TaskService {
-  tasks: any
+  tasks: Task[] | null = null;
 
   private TaskDbPath = 'tasks';
   TaskDetailsRef: AngularFireList<Task>;

@@ -6,13 +6,11 @@ import { AuthGuard } from '../shared/guards/auth.guard';
 import { CurrentSiteComponent } from './current-site/current-site.component';
 
 const routes: Routes = [
-  // {path: 'sites', children: [
-  //   {path: '', pathMatch: 'full', component: SitesListComponent},
-  //   {path:':themeId', component: CurrentThemeComponent}
-  // ]},
-  {path: 'sites', component: SitesListComponent},
-  {path: 'add-site', component: AddSiteComponent, canActivate: [AuthGuard]},
-  {path: 'site/:id', component: CurrentSiteComponent, canActivate: [AuthGuard]},
+  {path: 'sites', children: [
+    {path: '', pathMatch: 'full', component: SitesListComponent},
+    {path: 'add-site', component: AddSiteComponent, canActivate: [AuthGuard]},
+    {path:'site/:id', component: CurrentSiteComponent, canActivate: [AuthGuard]}
+  ]}
 ];
 
 @NgModule({
