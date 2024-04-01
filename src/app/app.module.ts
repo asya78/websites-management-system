@@ -22,10 +22,12 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { UserService } from './user/user.service';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from './task/task.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
