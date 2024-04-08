@@ -17,6 +17,9 @@
                             autofocus=""
                             ngModel
                             #inputsiteName="ngModel" >
+                            <ng-container *ngIf="inputsiteName.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteName.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                         <div class="col-sm-6">
                             <label for="siteImg" class="sr-only">Website IMG Url</label>
@@ -30,6 +33,9 @@
                             autofocus=""
                             ngModel
                             #inputsiteImg="ngModel" >
+                            <ng-container *ngIf="inputsiteImg.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteImg.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                         <div class="col-sm-6">
                             <label for="siteProdLink" class="sr-only">Production Link</label>
@@ -43,6 +49,9 @@
                             autofocus="" 
                             ngModel
                             #inputsiteProdLink="ngModel">
+                            <ng-container *ngIf="inputsiteProdLink.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteProdLink.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                         <div class="col-sm-6">
                             <label for="siteDevLink" class="sr-only">Development Link</label>
@@ -56,6 +65,9 @@
                             autofocus="" 
                             ngModel
                             #inputsiteDevLink="ngModel">
+                             <ng-container *ngIf="inputsiteDevLink.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteDevLink.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                         <div class="col-sm-6">
                             <label for="siteDevelopers" class="sr-only">Developers</label>
@@ -69,6 +81,9 @@
                             autofocus="" 
                             ngModel
                             #inputsiteDevelopers="ngModel">
+                             <ng-container *ngIf="inputsiteDevelopers.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteDevelopers.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                         <div class="col-sm-6">
                             <label for="siteTasks" class="sr-only">Tasks</label>
@@ -82,6 +97,9 @@
                             autofocus="" 
                             ngModel
                             #inputsiteTasks="ngModel">
+                            <ng-container *ngIf="inputsiteTasks.touched">
+                                <p class="error" *ngIf="form.submitted && inputsiteTasks.errors?.['required']">The field is required!</p>
+                            </ng-container>
                         </div>
                     </div>
                     <hr class="my-4">
